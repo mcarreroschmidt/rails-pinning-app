@@ -44,5 +44,7 @@ group :development, :test do
   gem 'database_cleaner'
 end
 
+gem 'rails_12factor'
+
 gem 'rspec'
 gem 'rspec-rails'

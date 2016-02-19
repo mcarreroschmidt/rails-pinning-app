@@ -1,11 +1,24 @@
+$color1: #036;
+$color2: #D56;
+
+body {
+  background: url(asset-path('laptop-background.jpg')) no-repeat;
+  background-size: cover;
+} 
 a {
-  color: #dd5566;
+  color: $color2;
 }
 h1 {
   font-family: 'Lobster', cursive;
   font-size: 60px;
-  color: #dd5566;
+  color: $color1;
+  background: url(asset-path('mcs_web_solutions_cube_butterfly_logo-125x125.png')) no-repeat left center;
+  padding-left:130px;
+  margin-left:-130px;
+  padding-top:30px;
+  min-height:120px;
 }
+h4{color:$color2;}
 .pin-container{
   padding: 10px;
 }
@@ -22,3 +35,12 @@ h1 {
 hr{
   clear:both;
 }
+.pin-header.rails,
+.pin-header.ruby
+{
+	background: url(asset-path('ruby-logo-thumbnail.png')) no-repeat left top;
+	padding-left:50px;
+	margin-left:-50px;
+	background-size: 40px;
+}
+.pin-header.rails{background-image:url(asset-path('rails-logo-thumbnail.png'))}

@@ -11,7 +11,7 @@
 					<div class="pin">
 						<div class="pin-header <%="#{pin.resource_type}"%>">
 							<h4>
-								<a href="<%= pin_path(pin) %>">
+								<a href="<%= pin_by_name_path(slug: pin.slug) %>" rel="<%= pin_path(pin) %>">
 									<%= "#{pin.title}" %>
 								</a>
 							</h4>

@@ -1,5 +1,7 @@
 $color1: #036;
 $color2: #D56;
+$color3: #F00;
+$color4: #FFF;
 
 body {
   background: url(asset-path('laptop-background.jpg')) no-repeat;
@@ -44,3 +46,5 @@ hr{
 	background-size: 40px;
 }
 .pin-header.rails{background-image:url(asset-path('rails-logo-thumbnail.png'))}
+.error label{background:$color3;color:$color4;border-radius:3px;}
+.error li{color:$color3;}

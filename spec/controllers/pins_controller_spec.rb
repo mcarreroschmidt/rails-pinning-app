@@ -89,5 +89,42 @@ RSpec.describe PinsController do
 		end    
 
 	end
+	
+	describe "GET edit" do
+		before(:each) do
+			@pin_hash = { 
+				title: "Rails Wizard", 
+				url: "http://railswizard.org", 
+				slug: "rails-wizard", 
+				text: "A fun and helpful Rails Resource",
+				category_id: "1"
+			}
+			@pin = Pin.create(@pin_hash)
+		end
+
+		after(:each) do
+			@pin = Pin.find_by_slug("rails-wizard")
+			if !@pin.nil?
+				@pin.destroy
+			end
+		end
+
+		it 'responds with successfully' do
+			get :edit, id: @pin.id
+			expect(response.success?).to be(true)
+		end
+
+		it 'renders the EDIT template' do
+			get :edit, id: @pin.id
+			expect(response).to render_template(:edit)
+		end
+		
+		it 'assigns the @pin instance variable to the Pin with the appropriate id' do
+			get :edit, id: @pin.id
+			expect(assigns[:pin].id).to eq(@pin.id)
+		end
+		
+	end
+	
 
 end

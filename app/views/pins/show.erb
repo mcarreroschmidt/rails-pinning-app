@@ -5,18 +5,13 @@
 </div>
 
 <div class="show-pin">
-  <p><i class="fa fa-laptop"></i><%= "#{@pin.text}" %></p>
+<% if !@pin.image.url.blank? %>
+	<p class="pin_image"><img src="<%= @pin.image.url %>"></p>
+<% end %>
+	<p><i class="fa fa-laptop"></i><%= "#{@pin.text}" %></p>
 
-  <hr/>
-  <p>
-    <b>Visit <%= "#{@pin.title}" %> at: </b>
-    <a class="url" href="<%= "#{@pin.url}" %>" target="_blank">
-      <%= "#{@pin.url}" %>
-    </a>
-  </p>
+	<hr/>
+	<p><b>Visit <%= "#{@pin.title}" %> at: </b> <a class="url" href="<%= "#{@pin.url}" %>" target="_blank"> <%= "#{@pin.url}" %></a></p>
 </div>
 <br/>
-<a href="/">
-	<i class="fa fa-home"></i>
-  Back to Home
-</a>
+<a href="/"><i class="fa fa-home"></i> Back to Home</a>

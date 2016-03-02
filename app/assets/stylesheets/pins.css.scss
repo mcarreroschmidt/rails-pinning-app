@@ -37,14 +37,16 @@ h4{color:$color2;}
 hr{
   clear:both;
 }
-.pin-header.rails,
-.pin-header.ruby
+.pin-header,
+.pin-header
 {
 	background: url(asset-path('ruby-logo-thumbnail.png')) no-repeat left top;
+	background-image:none;
 	padding-left:50px;
 	margin-left:-50px;
 	background-size: 40px;
 }
+.pin-header.ruby{background-image:url(asset-path('ruby-logo-thumbnail.png'))}
 .pin-header.rails{background-image:url(asset-path('rails-logo-thumbnail.png'))}
 .error label{background:$color3;color:$color4;border-radius:3px;}
 .error li{color:$color3;}

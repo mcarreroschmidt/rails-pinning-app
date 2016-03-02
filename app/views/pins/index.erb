@@ -7,9 +7,12 @@
 	<% @pins.each_slice(3) do |row| %>
 		<div class="row">
 			<% row.each do |pin| %>			
+<%
+pinheader_style = (pin.image.url.blank? ? "" : "background-image:url(#{pin.image.url});background-size:45px;")
+%>
 				<div class="pin-container col-md-4">
 					<div class="pin">
-						<div class="pin-header <%="#{pin.category.name}"%>">
+						<div class="pin-header <%="#{pin.category.name}"%>" style="<%="#{pinheader_style}"%>">
 							<h4><%=link_to "#{pin.title}", pin_by_name_path(slug: pin.slug) %></h4>
 							<%=link_to "#{pin.url}", "#{pin.url}", html_options = {target: "_blank", class: "url"} %>
 						</div>

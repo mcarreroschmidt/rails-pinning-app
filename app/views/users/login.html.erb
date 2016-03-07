@@ -1,0 +1,27 @@
+<h1>Login</h1>
+<% if !@errors.blank? %>
+  <div class="error">
+    <ul>
+        <li><%= "#{@errors}" %></li>
+    </ul>
+  </div>
+<% end %>
+<%= form_tag "/login" do %>
+<div class="row">
+	<div class="col-md-1"><%= label_tag :email %></div>
+	<div class="col-md-4"><%= text_field_tag :email %></div>
+</div>
+<div class="row">
+	<div class="col-md-1"><%= label_tag :password %></div>
+	<div class="col-md-4"><%= text_field_tag :password %></div>
+</div>
+<div class="actions">
+	<%= submit_tag "Login" %>
+</div>
+<% end %>
+
+<%= link_to users_path do %>
+	<i class="fa fa-long-arrow-left"></i> Back
+<% end %>
+
+

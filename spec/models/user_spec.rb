@@ -14,7 +14,8 @@ RSpec.describe User, type: :model do
 	end
  
 	it 'authenticates and returns a user when valid email and password passed in' do
- 		expect(@user.present?).to be(true)
+ 		expect(User.authenticate("coder@skillcrush","password")).to eq(@user)
+ 		expect(User.authenticate("nope@skillcrush","xxx")).to be_nil
 	end
 
 end

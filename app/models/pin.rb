@@ -1,5 +1,8 @@
 class Pin < ActiveRecord::Base
+
 	belongs_to :category
+	belongs_to :user
+
 	validates_presence_of :title, :url, :slug, :text, :category_id
 	validates_uniqueness_of :slug
 	has_attached_file :image, styles: { medium: "300x300>", thumb: "60x60>" }, default_url: ""#"http://placebear.com/300/300"

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+	has_many :pins
+
 	def self.authenticate(email, password)
 		u_search = User.find_by_email(email)
 		if u_search.present?

@@ -23,14 +23,43 @@ RSpec.describe UsersController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+before(:each) do 
+  @user = FactoryGirl.build(:user)
+end
+after(:each) do
+  @user.destroy
+end
+let(:valid_attributes) {
+  {
+    first_name: @user.first_name,
+    last_name: @user.last_name,
+    email: @user.email,
+    password: @user.password
   }
+}
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+before(:each) do 
+  @user = FactoryGirl.build(:user)
+end
+after(:each) do
+  if !@user.destroyed?
+    @user.destroy
+  end
+end
+let(:valid_attributes) {
+  {
+    first_name: @user.first_name,
+    last_name: @user.last_name,
+    email: @user.email,
+    password: @user.password
   }
-
+}  
+let(:invalid_attributes) {
+  {
+    first_name: @user.first_name,
+    password: @user.password
+  }
+}
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
@@ -165,14 +194,14 @@ RSpec.describe UsersController, type: :controller do
 
 	describe "POST login" do
 		before(:all) do
-			@user = User.create(email: "coder@skillcrush.com", password: "secret")
-			@valid_user_hash = {email: @user.email, password: @user.password}
+    		@user2 = FactoryGirl.create(:user)
+			@valid_user_hash = {email: @user2.email, password: @user2.password}
 			@invalid_user_hash = {email: "", password: ""}
 		end
 
 		after(:all) do
-			if !@user.destroyed?
-				@user.destroy
+			if !@user2.destroyed?
+				@user2.destroy
 			end
 		end
 
@@ -183,7 +212,7 @@ RSpec.describe UsersController, type: :controller do
 
 		it "populates @user if params valid" do 
 			post :authenticate, @valid_user_hash
-			expect(assigns[:user].email).to eq(@user.email)
+			expect(assigns[:user].email).to eq(@user2.email)
 		end
 
 		it "renders the login view if params invalid" do
@@ -195,6 +224,6 @@ RSpec.describe UsersController, type: :controller do
 			post :authenticate, @invalid_user_hash 
 			expect(assigns(:errors).present?).to be(true)
 		end
-end
+	end
 
 end

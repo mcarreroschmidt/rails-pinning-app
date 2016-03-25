@@ -56,8 +56,8 @@ let(:valid_attributes) {
 }  
 let(:invalid_attributes) {
   {
-    first_name: @user.first_name,
-    password: @user.password
+    first_name: '',
+    password: ''
   }
 }
   # This should return the minimal set of values that should be in the session

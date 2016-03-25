@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 
 # POST /users/authenticate
 def authenticate
-	#@user = User.authenticate(auth_params)
 	@user = User.authenticate(params[:email],params[:password])
 	if(!@user)
 		@errors = "Authentication failed! Please try again..."
@@ -57,7 +56,6 @@ end
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

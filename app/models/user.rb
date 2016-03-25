@@ -6,12 +6,14 @@ class User < ActiveRecord::Base
 	validates_uniqueness_of :email
 
 	def self.authenticate(email, password)
-		@u_search = User.find_by_email(email)
-		if !@u_search.nil?
-			@u = (@u_search.authenticate(password) ? @u_search : nil)
-		else
-			@u = nil
+		@user = User.find_by_email(email)
+
+		if !@user.nil?
+			if @user.authenticate(password)
+				return @user
+			end
 		end
-		return @u
+
+		return nil
 	end
 end

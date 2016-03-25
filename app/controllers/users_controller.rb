@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+#  before_action :require_login, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -25,6 +26,12 @@ class UsersController < ApplicationController
   def login
   end
 
+	# LOGOUT
+	def logout
+		session.delete(:user_id)
+		render :login
+	end
+
 # POST /users/authenticate
 def authenticate
 	@user = User.authenticate(params[:email],params[:password])
@@ -33,7 +40,8 @@ def authenticate
 		render :login
 	else
 		notice = 'You have successfully logged in.'
-		render :show
+		session[:user_id] = @user.id
+		redirect_to user_path(@user)
 	end
 end
 
@@ -82,6 +90,13 @@ end
     def set_user
       @user = User.find(params[:id])
     end
+
+    def require_login
+      if current_user.nil?
+      	redirect_to login_path()
+      end
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

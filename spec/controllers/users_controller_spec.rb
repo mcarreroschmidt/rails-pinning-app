@@ -189,7 +189,7 @@ let(:invalid_attributes) {
 
 	describe "POST login" do
 		before(:all) do
-    		@user2 = FactoryGirl.create(:user)
+    	@user2 = FactoryGirl.create(:user)
 			@valid_user_hash = {email: @user2.email, password: @user2.password}
 			@invalid_user_hash = {email: "", password: ""}
 		end

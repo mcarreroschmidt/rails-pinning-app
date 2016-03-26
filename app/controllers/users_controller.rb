@@ -26,24 +26,25 @@ class UsersController < ApplicationController
   def login
   end
 
-	# LOGOUT
-	def logout
-		session.delete(:user_id)
-		render :login
-	end
+  # LOGOUT
+  def logout
+    session.delete(:user_id)
+    render :login
+  end
 
-# POST /users/authenticate
-def authenticate
-	@user = User.authenticate(params[:email],params[:password])
-	if(!@user)
-		@errors = "Authentication failed! Please try again..."
-		render :login
-	else
-		notice = 'You have successfully logged in.'
-		session[:user_id] = @user.id
-		redirect_to user_path(@user)
+	# POST /users/authenticate
+	def authenticate
+		@user = User.authenticate(params[:email],params[:password])
+		if(!@user)
+			@errors = "Authentication failed! Please try again..."
+			render :login
+		else
+			notice = 'You have successfully logged in.'
+			session[:user_id] = @user.id
+#			redirect_to user_path(@user)
+			render :show
+		end
 	end
-end
 
   # POST /users
   # POST /users.json
@@ -86,25 +87,25 @@ end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+	# Use callbacks to share common setup or constraints between actions.
+	def set_user
+		@user = User.find(params[:id])
+	end
 
-    def require_login
-      if @user.nil?
-      	redirect_to login_path()
-      end
-    end
+	def require_login
+		if @user.nil?
+			redirect_to login_path()
+		end
+	end
 
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
-    end
+	# Never trust parameters from the scary internet, only allow the white list through.
+	def user_params
+		params.require(:user).permit(:first_name, :last_name, :email, :password)
+	end
 
-    def auth_params
-      params.permit(:email, :password)
-    end
+	def auth_params
+		params.permit(:email, :password)
+	end
 
 end

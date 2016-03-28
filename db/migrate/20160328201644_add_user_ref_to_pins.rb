@@ -1,7 +1,7 @@
 class AddUserRefToPins < ActiveRecord::Migration
   def change
-    add_reference :pins, :user, index: true
-    add_foreign_key :pins, :users
+#    add_reference :pins, :user, index: true
+#    add_foreign_key :pins, :users
 
     user = User.create(
       first_name: "Marty",

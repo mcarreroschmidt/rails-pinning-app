@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-<% if(!current_user.nil?) %>
+<% if(@user = current_user) %>
 	<div class="pull-right"><h3><%= "Hi, #{@user.first_name}!"%> <%= link_to "Logout", logout_path(current_user), method: :delete %></h3></div>
 <% end %>
     <%= yield %>

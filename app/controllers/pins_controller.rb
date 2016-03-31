@@ -56,9 +56,10 @@ class PinsController < ApplicationController
   def pin_params
   	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image)
   end
+	def require_login
+		if @user.nil?
+			redirect_to login_path()
+		end
+	end
 
 end
-
-gem 'bcrypt', '~> 3.1.7'
-gem 'bcrypt', '-> 3.1.7'
-gem 'bcrypt-ruby', '3.1.7'

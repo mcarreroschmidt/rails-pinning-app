@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 	def require_login
-		if @user.nil?
+		if current_user.nil?
 			redirect_to login_path()
 		end
 	end

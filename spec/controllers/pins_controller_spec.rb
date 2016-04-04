@@ -1,11 +1,6 @@
 require 'spec_helper'
 RSpec.describe PinsController do
 
-#	it "displays a link to a person's show page on the index view" do
-#		get("/people")
-#		expect(last_response.body.include?("/people/#{@person.id}")).to be(true)
-#	end
-
 	describe "GET index" do
 
 		it 'renders the INDEX template' do
